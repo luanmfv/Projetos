@@ -1,13 +1,21 @@
-from pytubefix import YouTube #importando a classe YouTube do pytubefix
-from pytube.cli import on_progress # para ver o progresso do download
+from pytubefix import YouTube
+from pytube.cli import on_progress
 
 url = 'https://www.youtube.com/watch?v=NpU_aN54eJA&list=RDNpU_aN54eJA&start_radio=1'
-
 destino = 'yt_downloader/pasta_video'
 
-yt = YouTube(url, on_progress_callback=on_progress) #instanciando a classe YouTube com a url e o callback de progresso
-print(yt.title) #imprimindo o título do vídeo
+yt = YouTube(url, on_progress_callback=on_progress)
+print(yt.title)
 
-ys = yt.streams.get_highest_resolution() #pegando o stream com a maior resolução
-ys.download(output_path=destino) #fazendo o download do vídeo para o destino especificado
+# Tenta pegar 720p progressive (com áudio)
+ys = yt.streams.filter(res="720p", progressive=True).first()
 
+# Se não tiver progressive 720p, pega 720p DASH (vídeo sem áudio)
+if not ys:
+    ys = yt.streams.filter(res="720p", type="video").first()
+
+if ys:
+    ys.download(output_path=destino)
+    print("Download concluído!")
+else:
+    print("Vídeo em 720p não disponível.")
