@@ -1,7 +1,7 @@
 from lib.interface import * # o * importa todas as def do package
 from lib.arquivo import *
 
-arq = 'cadastros.txt'
+arq = 'cadastro_pessoas/cadastros.txt'
 
 if not arquivoExiste(arq):  # se o arquivo não existe, criar um arquivo.
     criarArquivo(arq)
