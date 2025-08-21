@@ -21,6 +21,12 @@ create table funcionarios(
 INSERT INTO funcionarios (nome, email, telefone, cargo, salario, descricao, data_nascimento, data_admissao, status)
 VALUES
 
+-- Diretor Executivo
+
+('Luan Miguel de Freitas Vieira', 'luanmiguel.contato@loroantech.com', '+55 11 94902-2272',
+ 'Diretor Executivo (CEO)', 20000.00, 'Fundador e Diretor Executivo da LoroanTech',
+ '2000-02-28', '2020-04-03', 'ativo')
+
 
 -- Desenvolvedores Front-End
 
